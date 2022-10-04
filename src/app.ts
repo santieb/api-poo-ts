@@ -5,6 +5,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 import { UserRouter } from './user/user.router'
 import { ConfigServer } from './config/config'
+import { DataSource } from 'typeorm'
 
 class ServerBootstrap extends ConfigServer {
   private app: express.Application = express()
@@ -12,15 +13,21 @@ class ServerBootstrap extends ConfigServer {
 
   constructor () {
     super()
-    this.dbConnect()
 
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: true }))
+    this.dbConnect()
     this.app.use(morgan('dev'))
     this.app.use(cors())
 
     this.app.use('/api', this.routers())
     this.listen()
+  }
+
+  async dbConnect (): Promise<DataSource | void> {
+    return this.initConnect
+      .then(() => console.log('Connect Sucess'))
+      .catch(err => console.error(err))
   }
 
   routers (): Array<express.Router> {

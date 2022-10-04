@@ -1,5 +1,4 @@
-import { IsOptional } from 'class-validator'
-import { IsDate, IsUUID } from 'class-validator/types/decorator/decorators'
+import { IsDate, IsOptional, IsUUID } from 'class-validator'
 
 export abstract class BaseDto {
   @IsUUID()

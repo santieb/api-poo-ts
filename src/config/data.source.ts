@@ -1,24 +1,27 @@
 import * as dotenv from 'dotenv'
-import { DataSourceOptions } from 'typeorm'
+import { DataSource, DataSourceOptions } from 'typeorm'
 import path from 'path'
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 
 dotenv.config({
-  path: process.env.NODE_ENV !== undefined ?
-    `.${process.env.NODE_ENV.trim()}.env` :
-    '.env'
+  path: process.env.NODE_ENV
+    ? `.${process.env.NODE_ENV.trim()}.env`
+    : '.env'
 })
 
 const Config: DataSourceOptions = {
   type: 'mysql',
-  host: this.getEnvironment('DB_HOST'),
-  port: this.getNumberEnv('DB_PORT'),
-  username: this.getEnvironment('DB_USER'),
-  password: this.getEnvironment('DB_PASSWORD'),
-  database: this.getEnvironment('DB_DATABASE'),
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
   entities: [path.join(__dirname, '/../**/*.entity{.js,.ts}')],
-  migrations: [path.join(__dirname, '/../../migrations/*{.js,.ts}')],
+  migrations: [path.join(__dirname, '/../migrations/*{.js,.ts}')],
+  migrationsRun: true,
   synchronize: false,
   logging: false,
   namingStrategy: new SnakeNamingStrategy()
 }
+
+export const AppDataSource: DataSource = new DataSource(Config)
