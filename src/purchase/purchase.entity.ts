@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm'
 import { BaseEntity } from '../config/base.entity'
-import { PurchaseProductEntity } from '../custom/purchases-products.entity'
+import { PurchaseProductEntity } from './purchases-products.entity'
 import { CustomerEntity } from '../customer/customer.entity'
 
 @Entity({ name: 'purchase' })

@@ -5,7 +5,6 @@ import morgan from 'morgan'
 import cors from 'cors'
 import { UserRouter } from './user/user.router'
 import { ConfigServer } from './config/config'
-import { DataSource } from 'typeorm'
 
 class ServerBootstrap extends ConfigServer {
   private app: express.Application = express()
@@ -26,10 +25,6 @@ class ServerBootstrap extends ConfigServer {
 
   routers (): Array<express.Router> {
     return [new UserRouter().router]
-  }
-
-  async dbConnect (): Promise<DataSource> {
-    return await new DataSource(this.typeOrmConfig).initialize()
   }
 
   private listen () {
