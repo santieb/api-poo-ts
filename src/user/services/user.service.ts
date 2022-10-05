@@ -1,6 +1,6 @@
-import { BaseService } from '../config/base.service'
-import { UserEntity } from './user.entity'
-import { UserDTO } from './user.dto'
+import { BaseService } from '../../config/base.service'
+import { UserEntity } from '../entities/user.entity'
+import { UserDTO } from '../dto/user.dto'
 import { DeleteResult, UpdateResult } from 'typeorm'
 
 export class UserService extends BaseService<UserEntity> {
@@ -14,6 +14,14 @@ export class UserService extends BaseService<UserEntity> {
 
   async findUserById (id: string): Promise<UserEntity | null> {
     return (await this.execRepository).findOneBy({ id })
+  }
+
+  async findUserWithRelation (id: string): Promise<UserEntity | null> {
+    return (await this.execRepository)
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.customer', 'customer')
+      .where({ id })
+      .getOne()
   }
 
   async createUser (body: UserDTO): Promise<UserEntity> {

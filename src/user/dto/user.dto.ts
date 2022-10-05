@@ -1,5 +1,5 @@
 import { IsNotEmpty } from 'class-validator'
-import { BaseDto } from '../config/base.dto'
+import { BaseDto } from '../../config/base.dto'
 
 export enum RoleType {
   USER = 'USER',

@@ -1,4 +1,4 @@
-import { UserController } from './user.controller'
+import { UserController } from './controllers/user.controller'
 import { BaseRouter } from '../shared/router/router'
 
 export class UserRouter extends BaseRouter <UserController> {
@@ -12,6 +12,9 @@ export class UserRouter extends BaseRouter <UserController> {
 
     this.router.get('/users/:id', (req, res) =>
       this.controller.getUserById(req, res))
+
+    this.router.get('/usersRel/:id', (req, res) =>
+      this.controller.getUserWithRelations(req, res))
 
     this.router.post('/createUser', (req, res) =>
       this.controller.createUser(req, res))

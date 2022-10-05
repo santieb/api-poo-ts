@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { DeleteResult, UpdateResult } from 'typeorm'
-import { HttpResponse } from '../shared/response/http.response'
-import { UserService } from './user.service'
+import { HttpResponse } from '../../shared/response/http.response'
+import { UserService } from '../services/user.service'
 
 export class UserController {
   // eslint-disable-next-line
@@ -25,6 +25,18 @@ export class UserController {
     const { id } = req.params
     try {
       const data = await this.userService.findUserById(id)
+      if (!data) return this.httpResponse.NotFound(res, 'Not exists')
+
+      return this.httpResponse.Ok(res, data)
+    } catch (err) {
+      return this.httpResponse.Error(res, err)
+    }
+  }
+
+  async getUserWithRelations (req: Request, res: Response) {
+    const { id } = req.params
+    try {
+      const data = await this.userService.findUserWithRelation(id)
       if (!data) return this.httpResponse.NotFound(res, 'Not exists')
 
       return this.httpResponse.Ok(res, data)
