@@ -2,7 +2,7 @@ import { BaseService } from '../../config/base.service'
 import { DeleteResult, UpdateResult } from 'typeorm'
 import { PurchaseProductEntity } from '../entities/purchases-products.entity'
 import { ProductService } from '../../product/services/product.service'
-import { PurchaseProductDto } from '../dto/purchases-products.dto'
+import { PurchaseProductDto } from '../dto/purchase-product.dto'
 
 export class PurchaseProductService extends BaseService<PurchaseProductEntity> {
   constructor (private readonly productService: ProductService = new ProductService()) {
