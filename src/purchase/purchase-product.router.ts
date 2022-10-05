@@ -13,13 +13,13 @@ export class PurchaseProductRoutes extends BaseRouter<PurchaseProductController>
     this.router.get('/purchasesProducts/:id', (req, res) =>
       this.controller.getPurchaseProductById(req, res))
 
-    this.router.post('/createPurchasesProducts', (req, res) =>
+    this.router.post('/createPurchaseProduct', (req, res) =>
       this.controller.createPurchaseProduct(req, res))
 
-    this.router.patch('/updatePurchasesProducts/:id', (req, res) =>
+    this.router.patch('/updatePurchaseProduct/:id', (req, res) =>
       this.controller.updatePurchaseProduct(req, res))
 
-    this.router.delete('/deletePurchasesProducts/:id', (req, res) =>
+    this.router.delete('/deletePurchaseProduct/:id', (req, res) =>
       this.controller.deletePurchaseProduct(req, res))
   }
 }
