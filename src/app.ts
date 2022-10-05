@@ -6,6 +6,7 @@ import cors from 'cors'
 import { UserRouter } from './user/user.router'
 import { ConfigServer } from './config/config'
 import { DataSource } from 'typeorm'
+import { ProductRouter } from './product/product.router'
 
 class ServerBootstrap extends ConfigServer {
   private app: express.Application = express()
@@ -31,7 +32,7 @@ class ServerBootstrap extends ConfigServer {
   }
 
   routers (): Array<express.Router> {
-    return [new UserRouter().router]
+    return [new UserRouter().router, new ProductRouter().router]
   }
 
   private listen () {
