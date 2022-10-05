@@ -7,6 +7,7 @@ import { UserRouter } from './user/user.router'
 import { ConfigServer } from './config/config'
 import { DataSource } from 'typeorm'
 import { ProductRouter } from './product/product.router'
+import { CategorytRouter } from './category/category.router'
 
 class ServerBootstrap extends ConfigServer {
   private app: express.Application = express()
@@ -32,7 +33,10 @@ class ServerBootstrap extends ConfigServer {
   }
 
   routers (): Array<express.Router> {
-    return [new UserRouter().router, new ProductRouter().router]
+    return [
+      new UserRouter().router,
+      new ProductRouter().router,
+      new CategorytRouter().router]
   }
 
   private listen () {
