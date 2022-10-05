@@ -9,6 +9,8 @@ import { DataSource } from 'typeorm'
 import { ProductRouter } from './product/product.router'
 import { CategorytRouter } from './category/category.router'
 import { CustomerRouter } from './customer/customer.router'
+import { PurchaseRoutes } from './purchase/purchase.router'
+import { PurchaseProductRoutes } from './purchase/purchase-product.router'
 
 class ServerBootstrap extends ConfigServer {
   private app: express.Application = express()
@@ -38,7 +40,10 @@ class ServerBootstrap extends ConfigServer {
       new UserRouter().router,
       new ProductRouter().router,
       new CategorytRouter().router,
-      new CustomerRouter().router]
+      new CustomerRouter().router,
+      new PurchaseRoutes().router,
+      new PurchaseProductRoutes().router
+    ]
   }
 
   private listen () {

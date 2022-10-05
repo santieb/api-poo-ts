@@ -1,6 +1,12 @@
 import { IsNotEmpty } from 'class-validator'
 import { BaseDto } from '../config/base.dto'
 
+export enum RoleType {
+  USER = 'USER',
+  CUSTOMER = 'CUSTOMER',
+  ADMIN = 'ADMIN'
+}
+
 export class UserDTO extends BaseDto {
   @IsNotEmpty()
     name!: string
@@ -22,10 +28,7 @@ export class UserDTO extends BaseDto {
 
   @IsNotEmpty()
     province!: string
-}
 
-export enum RoleType {
-  USER = 'USER',
-  CUSTOMER = 'CUSTOMER',
-  ADMIN = 'ADMIN'
+  @IsNotEmpty()
+    role!: RoleType
 }
