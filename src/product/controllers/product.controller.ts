@@ -12,7 +12,9 @@ export class ProductController {
 
   async getProducts (req: Request, res: Response) {
     try {
-      const data = await this.productService.findAllProduct()
+      const { category } = req.query
+
+      const data = await this.productService.findAllProduct(category)
       if (data.length === 0) return this.httpResponse.NotFound(res, 'Not exists')
 
       return this.httpResponse.Ok(res, data)
