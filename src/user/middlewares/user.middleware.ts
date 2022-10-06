@@ -1,11 +1,13 @@
 import { validate } from 'class-validator'
 import { NextFunction, Request, Response } from 'express'
-import { HttpResponse } from '../../shared/response/http.response'
+import { SharedMiddleware } from '../../shared/middlewares/shared.middleware'
 import { UserDTO } from '../dto/user.dto'
 
-export class UserMiddleware {
+export class UserMiddleware extends SharedMiddleware {
   // eslint-disable-next-line
-  constructor (private httpResponse: HttpResponse = new HttpResponse) {}
+  constructor () {
+    super()
+  }
 
   userValidator (req: Request, res: Response, next: NextFunction) {
     const { name, lastName, username, email, password, city, province, role } = req.body
